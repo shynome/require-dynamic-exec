@@ -1,0 +1,29 @@
+{
+  "name": "require-dynamic-exec",
+  "version": "1.0.0",
+  "description": "node require dynamic proxy",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "ts-node test -F -P ."
+  },
+  "types": "src/index.ts",
+  "files": [
+    "lib",
+    "src"
+  ],
+  "keywords": [
+    "require",
+    "dynamic"
+  ],
+  "author": "shynome",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^7.0.12",
+    "chokidar": "^1.6.1",
+    "ts-node": "^3.0.2",
+    "typescript": "^2.2.2"
+  },
+  "engines": {
+    "node":"^6.10.2"
+  }
+}
