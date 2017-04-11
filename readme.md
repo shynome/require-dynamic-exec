@@ -26,4 +26,4 @@ module.constructor.prototype.require = dynamicRequire
 [source file](./src/index.ts)
 
 # 示例应用
-[`express-hot-reload`](./examples/express-hot-reload/readme.md)
+[`express-hot-reload`](./examples/express-hot-reload/reademe.md)
