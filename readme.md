@@ -24,3 +24,6 @@ function dynamicRequire(this:NodeModule,request){
 module.constructor.prototype.require = dynamicRequire
 ```
 [source file](./src/index.ts)
+
+# 示例应用
+[`express-hot-reload`]('./examples/express-hot-reload#readme')
