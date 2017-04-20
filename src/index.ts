@@ -2,16 +2,16 @@ import './global'
 export function ProxyFunction(func:Function,getTarget:()=>any){
   return new Proxy(func,{
     apply(func,that,args){
-      func = getTarget()
-      return ProxyExports(func.apply(that,args),()=>func.apply(that,args))
+      let newGetTarget = ()=>getTarget().apply(that,args)
+      return ProxyExports(newGetTarget(),newGetTarget)
     }
   })
 }
 export function ProxyObject(obj:Object,getTarget:()=>any){
   return new Proxy(obj,{
     get(obj,key){
-      obj = getTarget()
-      return ProxyExports(obj[key],()=>getTarget()[key])
+      let newGetTarget = ()=>getTarget()[key]
+      return ProxyExports(newGetTarget(),newGetTarget)
     }
   })
 }
