@@ -19,5 +19,5 @@ function dynamicRequire(this:NodeModule,request){
   })
 }
 module.constructor.prototype.require = dynamicRequire
-export let watch = ()=>require('./watch')
+export { watch } from './watch'
 

@@ -1,10 +1,10 @@
 {
   "name": "require-dynamic-exec",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "node require dynamic proxy",
   "main": "lib/index.js",
   "scripts": {
-    "test": "ts-node test -F -P ."
+    "prepublish": "tsc"
   },
   "types": "src/index.ts",
   "files": [
