@@ -30,8 +30,8 @@ function dynamicRequire(this:NodeModule,request){
   let getTarget = ()=>this.originRequire(request)
   let exports = getTarget()
   switch(true){
+    case request[0] !== '.': //过滤掉非相对路径的模块
     case /\\node_modules\\/.test(this.id):
-    case this.loaded:
       return exports
     default:
       return ProxyExports(exports,getTarget)
