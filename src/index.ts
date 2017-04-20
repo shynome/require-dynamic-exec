@@ -1,22 +1,40 @@
 import './global'
+export function ProxyFunction(func:Function,getTarget:()=>any){
+  return new Proxy(func,{
+    apply(func,that,args){
+      func = getTarget()
+      return ProxyExports(func.apply(that,args),()=>func.apply(that,args))
+    }
+  })
+}
+export function ProxyObject(obj:Object,getTarget:()=>any){
+  return new Proxy(obj,{
+    get(obj,key){
+      obj = getTarget()
+      return ProxyExports(obj[key],()=>getTarget()[key])
+    }
+  })
+}
+export function ProxyExports(exports:any,getTarget:()=>any){
+  switch(true){
+    case typeof exports==='object' && !!exports:
+      return ProxyObject(exports,getTarget)
+    case typeof exports==='function':
+      return ProxyFunction(exports,getTarget)
+    default:
+      return exports;
+  }
+}
 module.constructor.prototype.originRequire = module.constructor.prototype.require
 function dynamicRequire(this:NodeModule,request){
   let exports = this.originRequire(request)
-  if(/\\node_modules\\/.test(this.id)){
-    return exports
+  let getTarget = ()=>this.originRequire(request)
+  switch(true){
+    case /\\node_modules\\/.test(this.id):
+      return exports
+    default:
+      return ProxyExports(exports,getTarget)
   }
-  return new Proxy(exports,{
-    get:(exports,key)=>{
-      let returnValue = ()=>this.originRequire(request)[key]
-      let val = returnValue()
-      if(typeof val === 'function'){
-        return new Proxy(val,{
-          apply:(func,that,args)=>returnValue().apply(that,args)
-        })
-      }
-      return val
-    }
-  })
 }
 module.constructor.prototype.require = dynamicRequire
 export { watch } from './watch'
