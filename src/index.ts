@@ -27,10 +27,11 @@ export function ProxyExports(exports:any,getTarget:()=>any){
 }
 module.constructor.prototype.originRequire = module.constructor.prototype.require
 function dynamicRequire(this:NodeModule,request){
-  let exports = this.originRequire(request)
   let getTarget = ()=>this.originRequire(request)
+  let exports = getTarget()
   switch(true){
     case /\\node_modules\\/.test(this.id):
+    case this.loaded:
       return exports
     default:
       return ProxyExports(exports,getTarget)
