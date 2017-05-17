@@ -5,7 +5,9 @@ require('chokidar')
     ignored:/\.git/,
   })
   .on('change',function(path,stat){
-    if( require.cache[path] ){
+    let cacheModule:NodeModule
+    if( cacheModule = require.cache[path] ){
       delete require.cache[path]
+      delete require.cache[cacheModule.parent.id]
     }
   })

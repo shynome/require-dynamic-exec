@@ -1,6 +1,6 @@
 {
   "name": "require-dynamic-exec",
-  "version": "1.1.45",
+  "version": "1.1.46",
   "description": "node require dynamic proxy",
   "main": "lib/index.js",
   "scripts": {},
@@ -11,6 +11,7 @@
   ],
   "keywords": [
     "require",
+    "hotreload",
     "dynamic"
   ],
   "author": "shynome",
