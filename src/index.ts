@@ -22,8 +22,13 @@ module.constructor.prototype.originRequire = module.constructor.prototype.requir
 function dynamicRequire(this:NodeModule,request){
   let getTarget = ()=>this.originRequire(request)
   let exports = getTarget()
+  let request_path:string = this.id
+  if( request[0] !== '.'){
+    request_path = require.resolve(request)
+  }
   switch(true){
-    case /\\node_modules\\/.test(this.id)://ignore node_modules request 
+    case request_path[0] !== '.'://ignore core module
+    case /\\node_modules\\/.test(request_path)://ignore node_modules request 
     default:
       return exports
     case typeof exports==='function':
