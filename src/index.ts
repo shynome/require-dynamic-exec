@@ -23,8 +23,7 @@ function dynamicRequire(this:NodeModule,request){
   let getTarget = ()=>this.originRequire(request)
   let exports = getTarget()
   switch(true){
-    case request[0] !== '.': //ignore node_modules request 
-    case /\\node_modules\\/.test(this.id):
+    case /\\node_modules\\/.test(this.id)://ignore node_modules request 
     default:
       return exports
     case typeof exports==='function':

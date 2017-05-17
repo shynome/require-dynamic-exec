@@ -1,10 +1,9 @@
 {
   "name": "require-dynamic-exec",
-  "version": "1.1.4",
+  "version": "1.1.45",
   "description": "node require dynamic proxy",
   "main": "lib/index.js",
-  "scripts": {
-  },
+  "scripts": {},
   "types": "src/index.ts",
   "files": [
     "lib",
