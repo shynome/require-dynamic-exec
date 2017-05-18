@@ -34,5 +34,5 @@ function dynamicRequire(this:NodeModule,request){
   }
 }
 module.constructor.prototype.require = dynamicRequire
-export { watch } from './watch'
+export * from './watch'
 
