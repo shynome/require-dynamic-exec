@@ -1,12 +1,15 @@
 {
   "name": "require-dynamic-exec",
-  "version": "1.1.7",
+  "version": "1.1.71",
   "description": "hot require",
   "main": "lib/index.js",
+  "types": "src/index.ts",
+  "dependencies": {
+    "chokidar": "^1.7.0"
+  },
   "scripts": {
     "prepublish": "gulp tsc"
   },
-  "types": "src/index.ts",
   "files": [
     "lib",
     "src"
@@ -36,8 +39,5 @@
   "bugs": {
     "url": "https://github.com/shynome/require-dynamic-exec/issues"
   },
-  "homepage": "https://github.com/shynome/require-dynamic-exec#readme",
-  "dependencies": {
-    "chokidar": "^1.7.0"
-  }
+  "homepage": "https://github.com/shynome/require-dynamic-exec#readme"
 }

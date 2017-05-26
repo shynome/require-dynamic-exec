@@ -1,29 +1,12 @@
 
-# main code 
-
-```typescript
-module.constructor.prototype.originRequire = module.constructor.prototype.require
-function dynamicRequire(this:NodeModule,request){
-  let exports = this.originRequire(request)
-  if(/\\node_modules\\/.test(this.id)){
-    return exports
-  }
-  return new Proxy(exports,{
-    get:(exports,key)=>{
-      let returnValue = ()=>this.originRequire(request)[key]
-      let val = returnValue()
-      if(typeof val === 'function'){
-        return new Proxy(val,{
-          apply:(func,that,args)=>returnValue().apply(that,args)
-        })
-      }
-      return val
-    }
-  })
-}
-module.constructor.prototype.require = dynamicRequire
+# Install 
+```shell
+npm install require-dynamic-exec
 ```
-[source file](./src/index.ts)
 
-# 示例应用
-[`express-hot-reload`](//github.com/shynome/express-tsx)
+# Useage
+```javascript
+require('ts-node').register({ fast:true, project:__dirname })
+//if u has use other extname , set before this like the last one
+require('require-dynamic-exec').watch(__dirname,true)
+```
