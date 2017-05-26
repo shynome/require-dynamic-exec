@@ -1,4 +1,4 @@
-require('ts-node').register({ fast:true, project:__dirname })
+require('ts-node').register({ fast:true, project:__dirname+'/../' })
 // require('./test')
-require('require-dynamic-exec').watch(__dirname)
+require('../src').watch(__dirname,true)
 require('./')
