@@ -1,7 +1,7 @@
 {
   "name": "require-dynamic-exec",
-  "version": "1.1.64",
-  "description": "node require dynamic proxy",
+  "version": "1.1.7",
+  "description": "hot require",
   "main": "lib/index.js",
   "scripts": {},
   "types": "src/index.ts",
@@ -17,8 +17,11 @@
   "author": "shynome",
   "license": "MIT",
   "devDependencies": {
+    "@types/chokidar": "^1.6.0",
+    "@types/express": "^4.0.35",
     "@types/node": "^7.0.12",
     "chokidar": "^1.6.1",
+    "express": "^4.15.3",
     "lodash": "^4.17.4",
     "ts-node": "^3.0.2",
     "typescript": "^2.2.2"
