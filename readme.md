@@ -1,7 +1,7 @@
 
 # Install 
 ```shell
-npm install require-dynamic-exec
+npm install require-dynamic-exec -D
 ```
 
 # Useage
