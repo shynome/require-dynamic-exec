@@ -4,7 +4,7 @@ export function ProxyFunction(func:Function,getTarget:()=>any){
     return func
   }
   return new Proxy(func,{
-    get:(target,name)=>target[name].bind(target),
+    get:(target,name)=>name==='toString'?target[name].bind(target):target[name],
     apply(func,that,args){
       let newGetTarget = ()=>getTarget().apply(that,args)
       return ProxyFunction(newGetTarget(),newGetTarget)
@@ -25,7 +25,7 @@ function dynamicRequire(this:NodeModule,request){
   let exports = getTarget()
   switch(true){
     case !(/\/|\\/.test(request))://ignore require node_module and core module
-    case /\\node_modules\\/.test(this.id)://ignore request from node_modules 
+    case /node_modules/.test(this.id)://ignore request from node_modules 
     default:
       return exports
     case typeof exports==='function':
