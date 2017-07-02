@@ -1,6 +1,6 @@
 const assert = require('assert')
 const fs = require('fs')
-require('../../src').watch(__dirname,true)
+require('../../src').watch(__dirname,false)
 let now = 'a'
 const dynamicFile = require.resolve('./dynamic.js')
 const toggle = async()=>{
@@ -11,11 +11,11 @@ const toggle = async()=>{
     now = 'a'
   }
   fs.writeFileSync(dynamicFile,`exports.exec=require('./${now}').exec`)
-  await new Promise(rl=>setTimeout(rl,1000))
+  await new Promise(rl=>setTimeout(rl,200))
   return now
 }
 describe('dynamic exec',()=>{
-  for (var index = 0; index < 3; index++) {
+  for (var index = 0; index < 4; index++) {
     it(`toggle ${index}`,async()=>{
       let now = await toggle()
       let res = require('./dynamic').exec()

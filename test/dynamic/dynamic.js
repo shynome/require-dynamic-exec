@@ -1,1 +1,1 @@
-exports.exec=require('./b').exec
+exports.exec=require('./a').exec
