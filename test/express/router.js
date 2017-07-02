@@ -1,1 +1,1 @@
-exports.router = require('./router1').router
+exports.router=require('./router1').router

@@ -7,7 +7,7 @@ const express = require('express')
 const app = exports.app = express()
 const router = express.Router()
 router.use(require('./router').router)
-// app.use(router)
+app.use(router)
 exports.createServer = new Promise((resolve,reject)=>{
   app.listen(function(err){
     if(err){
