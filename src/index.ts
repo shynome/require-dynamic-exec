@@ -4,6 +4,7 @@ export function ProxyFunction(func:Function,getTarget:()=>any){
     return func
   }
   return new Proxy(func,{
+    get:(target,name)=>target[name].bind(target),
     apply(func,that,args){
       let newGetTarget = ()=>getTarget().apply(that,args)
       return ProxyFunction(newGetTarget(),newGetTarget)
