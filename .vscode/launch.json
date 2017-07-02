@@ -7,9 +7,17 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "代码测试",
-      "program": "${workspaceRoot}\\test\\ts.js",
-      "protocol": "inspector"
+      "name": "Mocha Tests",
+      "program": "${workspaceRoot}/node_modules/mocha/bin/_mocha",
+      "args": [
+        "-u",
+        "tdd",
+        "--timeout",
+        "999999",
+        "--colors",
+        "${workspaceRoot}/test"
+      ],
+      "internalConsoleOptions": "openOnSessionStart"
     }
   ]
 }
