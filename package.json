@@ -5,7 +5,8 @@
   "main": "lib/index.js",
   "types": "src/index.ts",
   "dependencies": {
-    "chokidar": "^1.7.0"
+    "chokidar": "^1.7.0",
+    "parse-gitignore": "^0.4.0"
   },
   "scripts": {
     "prebuild": "rm -r lib",
