@@ -11,13 +11,13 @@ export const watch = (basedir:any=process.cwd(),clearRequireTree=false)=>
 chokidar
   .watch( basedir, { ignored(f:string,stat:Stats){
     switch(true){
-    case !stat:
-    case stat.isDirectory():
-      return false
-    case ext.test(f):
-      return false
+    case /node_modules/.test(f):
     default:
       return true
+    case !stat:
+    case stat.isDirectory():
+    case ext.test(f):
+      return false
     }
   }, })
   .on( 'change', clearRequireTree ? clearRequireTreeCache : clearRequireCache )
