@@ -9,7 +9,7 @@ import { Stats } from "fs";
 import parseGitignore = require('parse-gitignore')
 /**监听文件变化并清除缓存 */
 export const watch = (basedir:any=process.cwd(),clearRequireTree=false)=>
-chokidar
+  chokidar
   .watch( basedir, { ignored:['.git'].concat(parseGitignore('.gitignore')), })
   .on( 'change', clearRequireTree ? clearRequireTreeCache : clearRequireCache )
 
