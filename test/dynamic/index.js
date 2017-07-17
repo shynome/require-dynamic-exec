@@ -1,6 +1,6 @@
 const assert = require('assert')
 const fs = require('fs')
-require('../../src').watch(__dirname,false)
+require('../../').watch(__dirname,false)
 let now = 'a'
 const dynamicFile = require.resolve('./dynamic.js')
 const toggle = async()=>{

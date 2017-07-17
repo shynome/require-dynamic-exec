@@ -1,4 +1,4 @@
-require('../../src').watch(__dirname)
+require('../../').watch(__dirname)
 /**
  * @type {number}
  */
