@@ -1,6 +1,6 @@
 {
   "name": "require-dynamic-exec",
-  "version": "1.1.77",
+  "version": "1.1.78",
   "description": "hot require",
   "main": "lib/index.js",
   "types": "src/index.ts",
