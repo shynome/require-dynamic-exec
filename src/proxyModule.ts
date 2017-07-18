@@ -5,7 +5,7 @@ export function ProxyFunction(func:Function,getTarget:()=>any){
   return new Proxy(func,{
     get(obj,key){
       let val = obj[key]
-      return val === Function.prototype[key]?val.bind(obj):val
+      return typeof val === 'function'?val.bind(obj):val
     },
     apply(func,that,args){
       let newGetTarget = ()=>getTarget().apply(that,args)
