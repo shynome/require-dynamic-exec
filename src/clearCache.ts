@@ -15,7 +15,6 @@ export const watchFile = (clearCache:clearCache)=>(path:string)=>{
         break;
     }
   })
-  debugger
 }
 export type clearCache = (path:string)=>boolean
 /**
