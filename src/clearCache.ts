@@ -1,8 +1,10 @@
 import fs = require('fs')
 export let watchRequireFile = (file:string)=>{}
+export const watchers = {}
 export const watchFile = (clearCache:clearCache)=>(path:string)=>{
+  if(watchers[path]){ return }
   let Timer = null
-  fs.watch(path,{},function(event){
+  watchers[path] = fs.watch(path,{},function(event){
     switch(event){
       default:
       case 'rename':
@@ -13,6 +15,7 @@ export const watchFile = (clearCache:clearCache)=>(path:string)=>{
         break;
     }
   })
+  debugger
 }
 export type clearCache = (path:string)=>boolean
 /**
