@@ -16,7 +16,7 @@ export const watchFile = (clearCache:clearCache)=>(path:string)=>{
 }
 export type clearCache = (path:string)=>boolean
 /**
- * start watch require file , for clear require cahce when it has changed 
+ * start watch file which is required  , for clear require cahce when it has changed 
  * @param ___dirname it will not be used 
  * @param clearTree true from strong clear method
  */
