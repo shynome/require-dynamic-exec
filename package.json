@@ -4,9 +4,7 @@
   "description": "hot require",
   "main": "lib/index.js",
   "types": "src/index.ts",
-  "dependencies": {
-    "parse-gitignore": "^0.4.0"
-  },
+  "dependencies": {},
   "scripts": {
     "prebuild": "rm -r lib",
     "build": "tsc",
