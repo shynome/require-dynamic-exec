@@ -15,6 +15,7 @@ export const watchFile = (clearCache:clearCache)=>(path:string)=>{
       default:
       case 'rename':
         this.close()
+        watchers[path] = null
       case 'change':
         clearTimeout(Timer)
         Timer = setTimeout(()=>clearCache(path),undefined)
