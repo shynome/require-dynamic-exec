@@ -18,7 +18,10 @@ export const watchFile = (clearCache:clearCache)=>(path:string)=>{
         watchers[path] = null
       case 'change':
         clearTimeout(Timer)
-        Timer = setTimeout(()=>clearCache(path),undefined)
+        Timer = process.nextTick(()=>{
+          clearCache(path)
+          require(path)//reload the module
+        })
         break;
     }
   })
