@@ -20,11 +20,6 @@ export const watchFile = (clearCache:clearCache)=>(path:string)=>{
         clearTimeout(Timer)
         Timer = process.nextTick(()=>{
           clearCache(path)
-          try{
-            require(path)//reload the module
-          }catch(err){
-            console.error(err && err.stack || err)
-          }
         })
         break;
     }
