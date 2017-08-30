@@ -23,7 +23,7 @@ export const watchFile = (clearCache:clearCache)=>(path:string)=>{
           try{
             require(path)//reload the module
           }catch(err){
-            console.error(err)
+            console.error(err && err.stack || err)
           }
         })
         break;
