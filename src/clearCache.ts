@@ -10,7 +10,7 @@ export const clearRequireTreeCache = (path:string)=>{
 export const watchers = {}
 export const normalize = (file:string)=>require.resolve(path.resolve(file))
 /**u can replace this method for ignore other files */
-export let ignore = (file:string)=>!!watchers[file] && /node_modules/.test(file)
+export let ignore = (file:string)=>!!watchers[file]
 export const watchFile = (clearCache:clearCache)=>(file:string)=>{
   file = normalize(file)
   if(ignore(file)){ return }
