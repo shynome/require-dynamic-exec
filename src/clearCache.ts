@@ -8,7 +8,7 @@ export const clearRequireTreeCache = (path:string)=>{
   return parent && clearRequireTreeCache(parent.id)
 }
 export const watchers = {}
-export const normalize = (file:string)=>require.resolve(path.join(process.cwd(),file))
+export const normalize = (file:string)=>require.resolve(path.resolve(file))
 /**u can replace this method for ignore other files */
 export let ignore = (file:string)=>/node_modules/.test(file)
 export const watchFile = (clearCache:clearCache)=>(module_id:string)=>{
