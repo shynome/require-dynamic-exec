@@ -10,13 +10,12 @@ export const clearRequireTreeCache = (path:string)=>{
 export const watchers = {}
 export const normalize = (file:string)=>require.resolve(path.resolve(file))
 /**u can replace this method for ignore other files */
-export let ignore = (file:string)=>/node_modules/.test(file)
-export const watchFile = (clearCache:clearCache)=>(module_id:string)=>{
-  if(watchers[module_id]){ return }
-  let file = normalize(module_id)
+export let ignore = (file:string)=>!!watchers[file] && /node_modules/.test(file)
+export const watchFile = (clearCache:clearCache)=>(file:string)=>{
+  file = normalize(file)
   if(ignore(file)){ return }
   let Timer = null
-  watchers[module_id] = fs.watch(file,{},function(event){
+  watchers[file] = fs.watch(file,{},function(event){
     switch(event){
       default:
       case 'rename':
@@ -25,7 +24,7 @@ export const watchFile = (clearCache:clearCache)=>(module_id:string)=>{
       case 'change':
         clearTimeout(Timer)
         Timer = process.nextTick(()=>{
-          clearCache(module_id)
+          clearCache(file)
         })
         break;
     }
