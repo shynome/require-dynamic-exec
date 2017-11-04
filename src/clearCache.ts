@@ -1,4 +1,5 @@
 import fs = require('fs')
+import path = require('path')
 export const clearRequireCache = (path:string)=>require.cache[path] && delete require.cache[path]
 export const clearRequireTreeCache = (path:string)=>{
   if(!require.cache[path])return
@@ -7,19 +8,24 @@ export const clearRequireTreeCache = (path:string)=>{
   return parent && clearRequireTreeCache(parent.id)
 }
 export const watchers = {}
-export const watchFile = (clearCache:clearCache)=>(path:string)=>{
-  if(watchers[path]){ return }
+export const normalize = (file:string)=>require.resolve(path.join(process.cwd(),file))
+/**u can replace this method for ignore other files */
+export let ignore = (file:string)=>/node_modules/.test(file)
+export const watchFile = (clearCache:clearCache)=>(module_id:string)=>{
+  if(watchers[module_id]){ return }
+  let file = normalize(module_id)
+  if(ignore(file)){ return }
   let Timer = null
-  watchers[path] = fs.watch(path,{},function(event){
+  watchers[module_id] = fs.watch(file,{},function(event){
     switch(event){
       default:
       case 'rename':
         this.close()
-        watchers[path] = null
+        watchers[file] = null
       case 'change':
         clearTimeout(Timer)
         Timer = process.nextTick(()=>{
-          clearCache(path)
+          clearCache(module_id)
         })
         break;
     }

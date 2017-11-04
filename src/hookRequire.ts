@@ -12,15 +12,15 @@ export function hookRequire(this:NodeModule,request){
   case /node_modules/.test(this.id)://ignore request from node_modules 
     return exports  
   default:
-  this.children.map(({filename})=>filename).forEach(watchRequireFile)
+    this.children.map(({filename})=>filename).forEach(watchRequireFile)
     watchRequireFile(this.id)
     switch(true){
-    default:
-      return exports
-    case typeof exports==='function':
-      return ProxyFunction(exports,getTarget)
-    case typeof exports==='object' && !!exports:
-      return ProxyModule(exports,getTarget)
+      default:
+        return exports
+      case typeof exports==='function':
+        return ProxyFunction(exports,getTarget)
+      case typeof exports==='object' && !!exports:
+        return ProxyModule(exports,getTarget)
     }
   }
 }
