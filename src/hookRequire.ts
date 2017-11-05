@@ -3,7 +3,6 @@ import { ProxyFunction,ProxyModule } from "./proxyModule";
 module.constructor.prototype.originRequire = module.constructor.prototype.require
 import { watchRequireFile } from './'
 //proxy module
-module.constructor.prototype.require = hookRequire
 export function hookRequire(this:NodeModule,request,forced_proxy=false){
   let getTarget = ()=>this.originRequire(request)
   let exports = getTarget()

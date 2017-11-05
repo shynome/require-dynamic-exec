@@ -7,7 +7,7 @@ export const clearRequireTreeCache = (path:string)=>{
   delete require.cache[path]
   return parent && clearRequireTreeCache(parent.id)
 }
-export const watchers = {}
+export const watchers:{ [file:string]:fs.FSWatcher } = {}
 export const normalize = (file:string)=>require.resolve(path.resolve(file))
 /**u can replace this method for ignore other files */
 export let ignore = (file:string)=>!!watchers[file]
