@@ -10,7 +10,8 @@
     "build": "tsc",
     "pretest": "npm run build",
     "test": "mocha test",
-    "preversion": "npm run test"
+    "preversion": "npm run test",
+    "postversion": "git push"
   },
   "keywords": [
     "require",
