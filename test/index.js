@@ -1,4 +1,4 @@
-require('ts-node').register({ fast:true })
+
 require('../')
 
 require('./deep')

@@ -27,4 +27,9 @@ describe('proxy func run',()=>{
     let result = run()
     assert.equal(result,'run',result)
   })
+  it('get the same proxy function',()=>{
+    let a = require('./exports').func
+    let b = require('./exports').func
+    assert.equal(a,b,`export function don't should return a new proxy function when each require`)
+  })
 })
